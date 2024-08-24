@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-namespace libMarshal;
+namespace sylvrs\libMarshal;
 
-use libMarshal\attributes\Field;
-use libMarshal\parser\Parseable;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionNamedType;
@@ -13,6 +11,8 @@ use ReflectionProperty;
 use ReflectionType;
 use ReflectionUnionType;
 use RuntimeException;
+use sylvrs\libMarshal\attributes\Field;
+use sylvrs\libMarshal\parser\Parseable;
 use function array_filter;
 use function array_map;
 use function count;
@@ -26,7 +26,7 @@ class PropertyHolder {
 	/**
 	 * This is used to store a list of ReflectionClass instances associated with the property's type
 	 *
-	 * @var array<ReflectionClass<object>>
+	 * @var ReflectionClass
 	 */
 	protected array $typeClasses;
 
@@ -52,7 +52,7 @@ class PropertyHolder {
 	 * This method is a lazy-loaded getter to get all
 	 * reflection classes associated with the property's type
 	 *
-	 * @return array<ReflectionClass<object>>
+	 * @return ReflectionClass
 	 * @throws ReflectionException
 	 */
 	public function getTypeClasses(): array {
@@ -62,7 +62,7 @@ class PropertyHolder {
 	/**
 	 * This method is the actual logic behind the {@link getTypeClasses()} method.
 	 *
-	 * @return array<ReflectionClass<object>>
+	 * @return ReflectionClass
 	 * @throws ReflectionException
 	 */
 	private function createTypeClasses(): array {
@@ -105,7 +105,7 @@ class PropertyHolder {
 	/**
 	 * A static method used to resolve a type to an array of ReflectionClass instances
 	 *
-	 * @return array<ReflectionClass<object>>
+	 * @return ReflectionClass
 	 * @throws ReflectionException
 	 */
 	private static function resolveClassesFromType(?ReflectionType $type): array {

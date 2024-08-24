@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace libMarshal\parser;
+namespace sylvrs\libMarshal\parser;
 
 /**
  * @template U of mixed
